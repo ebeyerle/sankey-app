@@ -18,7 +18,9 @@ const SankeyLink = ({ link, color }) => (
       stroke: color,
       strokeWidth: Math.max(1, link.width)
     }}
-  />
+  >
+    <title>{link.source.name+" --> "+link.target.name+"  ||  Amount:"+link.value}</title>
+  </path>
 );
 
 export const Sankey = ({ data, width, height }) => {
@@ -26,7 +28,7 @@ export const Sankey = ({ data, width, height }) => {
     .nodeWidth(15)
     .nodePadding(10)
     .extent([[1, 1], [width - 1, height - 5]])(data);
-  const color = chroma.scale("Set3").classes(nodes.length);
+  const color = chroma.scale("Set1").classes(nodes.length);
   const colorScale = d3
     .scaleLinear()
     .domain([0, nodes.length])
@@ -41,6 +43,7 @@ export const Sankey = ({ data, width, height }) => {
           key={node.name}
         />
       ))}
+    {console.log(links)}  
       {links.map((link, i) => (
         <SankeyLink
           link={link}

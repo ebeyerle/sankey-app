@@ -36,8 +36,8 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h2>Transaction Visualization w/ Sankey</h2>
-        <svg width="100%" height="600" ref={this.svgRef}>
+        <h2>Transaction Visualization</h2>
+        <svg width="85%" height="600" ref={this.svgRef}>
           {data && (
             <Sankey data={data} width={width} height={height} />
           )}
